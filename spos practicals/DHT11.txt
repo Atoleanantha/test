@@ -1,0 +1,41 @@
+#define PIN 7
+#define TYPE DHT11
+#include<DHT.h>
+DHT dht(PIN, TYPE);
+const int led = 12;
+void setup()
+{
+  Serial.begin(9600);
+  dht.begin();
+  pinMode(led, OUTPUT);
+}
+void loop()
+{
+  float t = dht.readTemperature();
+  int h = dht.readHumidity();
+  if(t > 50.00)
+  {
+    t = 0;
+  }
+  if(h > 100)
+  {
+    h = 0;
+  }
+  if(t >= 30)
+  {
+    digitalWrite(led, HIGH);
+  }
+  else
+  {
+    digitalWrite(led, LOW);
+  }
+  Serial.println();
+  Serial.print("TEMPERATURE: ");
+  Serial.print(t);
+  Serial.print(" 'C");
+  Serial.println();
+  Serial.print("HUMIDITY: ");
+  Serial.print(h);
+  Serial.print(" %");
+  delay(5000);
+}

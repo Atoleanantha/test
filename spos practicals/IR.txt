@@ -1,0 +1,18 @@
+void setup(){
+  pinMode(3, INPUT); // IR Sensor pin INPUT
+  pinMode(13, OUTPUT); // LED Pin Output
+  Serial.begin(9600);
+}
+
+void loop(){
+  
+  if (digitalRead(3)==LOW)  // Check if the pin high or not 
+  {
+  digitalWrite(13,HIGH);
+  delay(10);
+  }
+  else  {
+    digitalWrite(13,LOW);
+    delay(10);
+  }
+}
